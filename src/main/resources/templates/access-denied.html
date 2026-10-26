@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Accès refusé</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<main>
+  <h1 class="err">403 : Accès refusé</h1>
+  <p>Ton rôle ne te permet pas d'accéder à cette page.</p>
+  <a th:href="@{/home}">Retour à l'accueil</a>
+</main>
+</body>
+</html>

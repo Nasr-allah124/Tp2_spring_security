@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h1>Bienvenue <span th:text="${username}"></span></h1>
+    <p>Rôle(s) :
+        <span th:each="r : ${roles}" th:text="${r.authority} + ' '"></span>
+    </p>
+    <ul>
+        <li th:if="${canMedicaments}"><a th:href="@{/medicaments}">Médicaments</a></li>
+        <li th:if="${canVentes}"><a th:href="@{/ventes}">Ventes</a></li>
+        <li th:if="${isAdmin}"><a th:href="@{/admin}">Administration des utilisateurs</a></li>
+    </ul>
+</main>
+</body>
+</html>

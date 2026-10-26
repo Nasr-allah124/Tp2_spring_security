@@ -1,0 +1,13 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; }
+header { background: #1f6f5c; color: #fff; padding: 12px 30px; display: flex; gap: 20px; align-items: center; }
+header a { color: #fff; text-decoration: none; }
+header form { margin-left: auto; }
+main { padding: 30px; }
+table { border-collapse: collapse; background: #fff; margin-bottom: 25px; }
+th, td { border: 1px solid #ccc; padding: 8px 12px; }
+th { background: #e8eef0; }
+input, select { padding: 6px; margin: 3px; }
+button { padding: 6px 12px; cursor: pointer; }
+.box { background: #fff; max-width: 340px; margin: 80px auto; padding: 30px; border-radius: 6px; }
+.ok { color: #1a7f37; }
+.err { color: #c62828; }

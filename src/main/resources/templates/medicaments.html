@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Médicaments</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h1>Médicaments</h1>
+    <table>
+        <tr><th>ID</th><th>Nom</th><th>Prix</th><th>Stock</th><th th:if="${canEdit}">Actions</th></tr>
+        <tr th:each="m : ${medicaments}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.nom}"></td>
+            <td th:text="${m.prix}"></td>
+            <td th:text="${m.quantite}"></td>
+            <td th:if="${canEdit}">
+                <form th:action="@{/medicaments/stock/{id}(id=${m.id})}" method="post" style="display:inline">
+                    <input type="number" name="quantite" th:value="${m.quantite}" min="0" style="width:70px">
+                    <button type="submit">Modifier stock</button>
+                </form>
+                <form th:if="${canDelete}" th:action="@{/medicaments/delete/{id}(id=${m.id})}" method="post" style="display:inline">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <div th:if="${canEdit}">
+        <h3>Ajouter un médicament</h3>
+        <form th:action="@{/medicaments/save}" method="post">
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="number" step="0.01" name="prix" placeholder="Prix" required>
+            <input type="number" name="quantite" placeholder="Stock" min="0" required>
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

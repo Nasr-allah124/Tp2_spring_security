@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h1>Gestion des utilisateurs</h1>
+    <p class="ok" th:if="${message}" th:text="${message}"></p>
+    <p class="err" th:if="${erreur}" th:text="${erreur}"></p>
+
+    <table>
+        <tr><th>ID</th><th>Utilisateur</th><th>Rôle(s)</th><th>Action</th></tr>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.username}"></td>
+            <td><span th:each="r : ${u.roles}" th:text="${r.name} + ' '"></span></td>
+            <td>
+                <form th:action="@{/admin/users/delete/{id}(id=${u.id})}" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Créer un utilisateur</h3>
+    <form th:action="@{/admin/users}" method="post">
+        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" name="password" placeholder="Mot de passe" required>
+        <select name="role">
+            <option th:each="r : ${roles}" th:value="${r.name}" th:text="${r.name}"></option>
+        </select>
+        <button type="submit">Créer</button>
+    </form>
+</main>
+</body>
+</html>

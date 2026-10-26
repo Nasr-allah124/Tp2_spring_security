@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h1>Enregistrer une vente</h1>
+    <p class="ok" th:if="${message}" th:text="${message}"></p>
+    <p class="err" th:if="${erreur}" th:text="${erreur}"></p>
+    <table>
+        <tr><th>Nom</th><th>Prix</th><th>Stock</th><th>Vente</th></tr>
+        <tr th:each="m : ${medicaments}">
+            <td th:text="${m.nom}"></td>
+            <td th:text="${m.prix}"></td>
+            <td th:text="${m.quantite}"></td>
+            <td>
+                <form th:action="@{/ventes/vendre}" method="post">
+                    <input type="hidden" name="id" th:value="${m.id}">
+                    <input type="number" name="quantite" value="1" min="1" style="width:70px">
+                    <button type="submit">Vendre</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>
